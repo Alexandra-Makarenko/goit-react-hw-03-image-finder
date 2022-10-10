@@ -1,6 +1,6 @@
 import { Component } from 'react';
-// import './Modal.styled.js';
-import { Backdrop,Content,Img } from './Modal.styled';
+import PropTypes from 'prop-types';
+import { Backdrop,Content } from './Modal.styled';
 import { createPortal } from 'react-dom';
 
 const modalRoot = document.querySelector('#modal-root');
@@ -38,3 +38,12 @@ render() {
   }
 
 }
+
+Modal.propTypes = {
+  image: PropTypes.shape({
+    id:PropTypes.string.isRequired,
+    webformatURL:PropTypes.string.isRequired,
+    largeImageURL:PropTypes.string.isRequired,
+    }).isRequired,
+    onClose:PropTypes.func.isRequired
+  }
