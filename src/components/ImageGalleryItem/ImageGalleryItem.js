@@ -29,7 +29,7 @@ export class ImageGalleryItem extends Component {
 
   ImageGalleryItem.propTypes = {
     image: PropTypes.shape({
-      id:PropTypes.string.isRequired,
+      id:PropTypes.number.isRequired,
       webformatURL:PropTypes.string.isRequired,
       largeImageURL:PropTypes.string.isRequired,
       }).isRequired}

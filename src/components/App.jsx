@@ -45,7 +45,7 @@ resetPage=() =>{
     try {
       this.setState({ isLoading: true });
       const images = await getImages(this.state.searchQuery,this.state.page);
-      this.setState(prevState =>({ images:[...prevState.images, ...images] }));
+      this.setState({ images:[...images] });
     } catch {
       this.setState({ error: 'Failed to load image :(' });
     } finally {
@@ -62,7 +62,9 @@ resetPage=() =>{
         <Searchbar onSubmit={this.formSubmitHandler}/>
          <div>
         
-          { this.state.isLoading ? (<ColorRing
+<ImageGallery images = {this.state.images}/>
+{(!this.state.isLoading && (this.state.images.length>0)) && <button type='button' onClick={this.incrementPage}>Load more...</button>}
+{(this.state.isLoading ) && <ColorRing
   visible={true}
   height="80"
   width="80"
@@ -70,8 +72,7 @@ resetPage=() =>{
   wrapperStyle={{}}
   wrapperClass="blocks-wrapper"
   colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
-/>):(  <ImageGallery images = {this.state.images}/>)} 
- <button type='button' onClick={this.incrementPage}>Load more...</button>
+/>}
        
           </div>    
            <Toaster position="bottom-right" />
